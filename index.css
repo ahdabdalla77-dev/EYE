@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Cairo", "IBM Plex Sans Arabic", "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Royal Blue and White Theme Colors */
+  --color-eye-brand: #1d4ed8;
+  --color-eye-brand-dark: #1e40af;
+  --color-eye-brand-light: #60a5fa;
+  --color-eye-brand-soft: #eff6ff;
+}
+
+@layer base {
+  body {
+    @apply font-sans text-slate-900 bg-slate-50 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-200 antialiased;
+  }
+}
+
+/* Custom premium scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(29, 78, 216, 0.15);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(29, 78, 216, 0.4);
+}
+
+/* Glassmorphism styling */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.dark .glass-panel {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+}
+
+/* Modern dashboard widgets gradient glow */
+.card-glow {
+  position: relative;
+}
+
+.card-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 20px 0 rgba(29, 78, 216, 0.05);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.card-glow:hover::after {
+  opacity: 1;
+}
+
+/* Custom premium badge pulsate */
+.badge-pulse {
+  position: relative;
+}
+.badge-pulse::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: inherit;
+  border-radius: inherit;
+  z-index: -1;
+  animation: pulse-ring 2s cubic-bezier(0.215, 0.610, 0.355, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-120%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* --- EYE HIGH-POLISH DARK THEME SYSTEM --- */
+.dark {
+  /* Redefine Tailwind custom theme variables for dark mode */
+  --color-eye-brand-soft: #1e293b;
+  --color-eye-brand-light: #3b82f6;
+  color-scheme: dark;
+}
+
+/* Base Body and Main background overrides in Dark Mode */
+.dark body {
+  background-color: #0b0f19 !important;
+  color: #f1f5f9 !important;
+}
+
+/* Glassmorphism panel for dark theme */
+.dark .glass-panel {
+  background: rgba(15, 23, 42, 0.8) !important;
+  border-color: rgba(51, 65, 85, 0.4) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+/* bg-white, bg-slate-50 overrides */
+.dark .bg-white {
+  background-color: #111827 !important; /* Slate 900 */
+}
+
+.dark .bg-slate-50 {
+  background-color: #0b0f19 !important; /* Deep Slate */
+}
+
+.dark .bg-slate-50\/60 {
+  background-color: rgba(15, 23, 42, 0.5) !important;
+}
+
+.dark .bg-slate-100 {
+  background-color: #1f2937 !important;
+}
+
+/* Borders in Dark Mode */
+.dark .border-slate-200,
+.dark .border-slate-150,
+.dark .border-slate-100,
+.dark .border-slate-200\/60 {
+  border-color: #1f2937 !important; /* Slate 800 */
+}
+
+/* Inputs, Textareas, Select elements in Dark Mode */
+.dark input,
+.dark textarea,
+.dark select {
+  background-color: #1f2937 !important;
+  color: #f3f4f6 !important;
+  border-color: #374151 !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #6b7280 !important;
+}
+
+.dark input:focus,
+.dark textarea:focus,
+.dark select:focus {
+  border-color: var(--color-eye-brand) !important;
+  box-shadow: 0 0 0 2px rgba(29, 78, 216, 0.3) !important;
+}
+
+/* Text Colors in Dark Mode */
+.dark .text-slate-900,
+.dark .text-slate-800,
+.dark .text-slate-700 {
+  color: #f3f4f6 !important; /* Slate 100/200 */
+}
+
+.dark .text-slate-600 {
+  color: #cbd5e1 !important; /* Slate 300 */
+}
+
+.dark .text-slate-500,
+.dark .text-slate-400 {
+  color: #9ca3af !important; /* Slate 400 */
+}
+
+/* Hover transitions in Dark Mode */
+.dark .hover\:bg-slate-50:hover,
+.dark .hover\:bg-slate-50\/50:hover,
+.dark .hover\:bg-slate-100:hover,
+.dark .hover\:bg-slate-100\/80:hover {
+  background-color: #1f2937 !important;
+}
+
+/* Dialogs/Modals extra backdrop shadow */
+.dark .shadow-2xl,
+.dark .shadow-xl {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Interactive custom card state */
+.dark .card-glow::after {
+  box-shadow: 0 0 25px 0 rgba(59, 130, 246, 0.1) !important;
+}
+
+/* Scrollbar styling in dark mode */
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.3);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.5);
+}
+
